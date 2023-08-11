@@ -1,0 +1,104 @@
+<script setup>
+import { ref, reactive } from "vue";
+import { Link, router } from "@inertiajs/vue3";
+import FormLayout from "@/Layouts/FormLayout.vue";
+
+const form = reactive({
+    userName: "",
+    phone: "",
+})
+
+const submitForm = () => {
+
+    router.post('/saveUserData', form)
+    //     .then((response) => {
+    //         console.log(response.data);
+    //         // ทำสิ่งที่คุณต้องการหลังจากบันทึกข้อมูลสำเร็จ
+    //     })
+    //     .catch((error) => {
+    //         console.error(error);
+    //         // ทำสิ่งที่คุณต้องการหากเกิดข้อผิดพลาด
+    //     });
+};
+</script>
+<template>
+    <!-- <Link href="/question?name=xxxx&phone=099999999">Question</Link>
+    <a href="/question?name=xxxx&phone=099999999">Question A</a> -->
+    <FormLayout>
+        <!-- Title -->
+        <div class="px-4 py-4">
+            <div
+                class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+            >
+                <div class="p-4">
+                    <h1
+                        class="block font-k2d text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                    >
+
+                        แบบสำรวจผู้ใช้บริการ Gym หรือ Fitness
+                    </h1>
+                    <p
+                        class="p-2 block font-k2d text-sm font-light leading-relaxed text-inherit antialiased"
+                    >
+                        คำอธิบายแบบฟอร์ม
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Title -->
+        <!-- Start Form -->
+        <div class="px-4 py-2">
+            <div
+                class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+            >
+                <div class="p-4">
+                    <div class="flex flex-col gap-4">
+                        <div class="">
+                            <label class="block">
+                                <span
+                                    class="pl-2 font-k2d after:content-['*'] after:ml-0.5 after:text-red-500 block text-base font-medium text-slate-700"
+                                >
+                                    ชื่อ
+                                </span>
+                                <input
+                                    type="text"
+                                    name="userName"
+                                    v-model="form.userName"
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                />
+                            </label>
+                        </div>
+                        <div class="">
+                            <label class="block">
+                                <span
+                                    class="pl-2 font-k2d after:content-['*'] after:ml-0.5 after:text-red-500 block text-base font-medium text-slate-700"
+                                >
+                                    เบอร์โทรศัพท์
+                                </span>
+                                <input
+                                    type="number"
+                                    name="phone"
+                                    v-model="form.phone"
+                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 pt-0">
+                    <button
+                        class="select-none rounded-lg bg-[#f49f0a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        type="button"
+                        data-ripple-light="true"
+                        @click="submitForm"
+                    >
+                        ต่อไป
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- End Form -->
+    </FormLayout>
+</template>
+
+<style scoped></style>

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserDataController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +19,22 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Question');
-});
+    return Inertia::render('Info');
+})->name('home');
+
+Route::post('/saveUserData', [UserDataController::class, 'saveUserData']);
+
+Route::get('/question', function (Request $request) {
+
+    return Inertia::render('Question', [
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+        'token' => $request->token,
+    ]);
+
+})->name('question');
+
+Route::post('/saveQuestion', [UserDataController::class, 'saveQuestion']);
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [

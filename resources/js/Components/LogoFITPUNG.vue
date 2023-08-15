@@ -2,7 +2,7 @@
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
-        class="w-16 h-16"
+        class="lg:w-28 lg:h-28 w-16 h-16"
         zoomAndPan="magnify"
         viewBox="0 0 174 109.499999"
         preserveAspectRatio="xMidYMid meet"

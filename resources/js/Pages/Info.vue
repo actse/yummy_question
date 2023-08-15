@@ -25,27 +25,6 @@ const submitForm = () => {
     <!-- <Link href="/question?name=xxxx&phone=099999999">Question</Link>
     <a href="/question?name=xxxx&phone=099999999">Question A</a> -->
     <FormLayout>
-        <!-- Title -->
-        <div class="px-4 py-4">
-            <div
-                class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
-            >
-                <div class="p-4">
-                    <h1
-                        class="block font-k2d text-lg font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-
-                        แบบสำรวจผู้ใช้บริการ Gym หรือ Fitness
-                    </h1>
-                    <p
-                        class="p-2 block font-k2d text-sm font-light leading-relaxed text-inherit antialiased"
-                    >
-                        คำอธิบายแบบฟอร์ม
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- End Title -->
         <!-- Start Form -->
         <div class="px-4 py-2">
             <div

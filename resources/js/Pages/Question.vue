@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, computed } from "vue";
 import { Link, router } from "@inertiajs/vue3";
+import Swal from "sweetalert2";
 import FormLayout from "@/Layouts/FormLayout.vue";
 
 const props = defineProps({
@@ -302,26 +303,39 @@ const clearData = (e) => {
 };
 
 const Submit = () => {
-    console.log(form);
-
-    router
-        .post("/saveQuestion", form)
-        .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    Swal.fire({
+        title: "ยืนยันการส่งแบบฟอร์มหรือไม่",
+        showCancelButton: true,
+        confirmButtonText: "ยืนยัน",
+        cancelButtonText: "บยกเลิก",
+    }).then((result) => {
+        console.log(result);
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            router
+                .post("/saveQuestion", form)
+                .then((response) => {
+                    console.log(response.data);
+                    Swal.fire({
+                        icon: "success",
+                        title: "ส่งแบบฟอร์มสำเร็จแล้ว",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else if (result.isDenied) {
+            Swal.fire("การยืนยันถูกยกเลิก", "", "info");
+        }
+    });
 };
 </script>
 <template>
-    <!-- userName: {{ $page.props.data.userName }}
-    phone: {{ $page.props.data.phone }} -->
     <FormLayout>
         <!-- Start Form -->
-        <div class="py-2"></div>
         <form @submit.prevent="Submit">
-            <!-- <h1>{{ token }}</h1> -->
             <!-- Questions -->
             <div
                 class="px-4 py-2"
@@ -334,7 +348,9 @@ const Submit = () => {
                     <div class="p-4">
                         <div class="flex flex-col gap-4">
                             <div class="">
-                                <h2 class="py-2 text-base font-semibold">
+                                <h2
+                                    class="py-2 lg:text-xl md:text-base font-semibold"
+                                >
                                     {{ index + 1 }} {{ question.questionsName }}
                                 </h2>
                                 <!-- Loop through options for each question -->
@@ -478,7 +494,6 @@ const Submit = () => {
                     </div>
                 </div>
             </div>
-
             <!-- ShowMoreQuestions -->
             <div v-if="form.question15 && form.question15 !== 'ไม่เคยใช้'">
                 <div class="px-4 py-2">
@@ -572,13 +587,13 @@ const Submit = () => {
                 </div>
             </div>
             <!-- Summit -->
-            <div class="p-4 pt-0">
+            <div class="p-4 pt-2">
                 <button
                     class="select-none rounded-lg bg-[#f49f0a] py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="submit"
                     data-ripple-light="true"
                 >
-                    ต่อไป
+                    ส่งแบบฟอร์ม
                 </button>
             </div>
         </form>

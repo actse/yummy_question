@@ -42,9 +42,7 @@ class UserDataController extends Controller
         $data->moreQuestion3 = '';
         $data->save();
 
-        return redirect()->route('question', [
-            'token' => $token
-        ]);
+        return redirect()->route('question', ['token' => $token]);
     }
 
     public function saveQuestion(Request $request)
@@ -60,22 +58,51 @@ class UserDataController extends Controller
             $question5Other = $request->input('question5Other');
             $question8Other = $request->input('question8Other');
 
-            // Check if question5Value and question8Value are not null
-            if ($question5Value !== null) {
-                if (in_array('อื่นๆ', $question5Value)) {
-                    $question5Value = [$question5Other];
-                }
-            } else {
-                $question5Value = [];
-            }
+            // if ($question5Value !== null) {
+            //     if (in_array('อื่นๆ', $question5Value)) {
+            //         $question5Value = [$question5Other];
+            //     }
+            // } else {
+            //     $question5Value = [];
+            // }
 
-            if ($question8Value !== null) {
-                if (in_array('อื่นๆ', $question8Value)) {
-                    $question8Value = [$question8Other];
+            // if ($question8Value !== null) {
+            //     if (in_array('อื่นๆ', $question8Value)) {
+            //         $question8Value = [$question8Other];
+            //     }
+            // } else {
+            //     $question8Value = [];
+            // }
+
+            // Check if "อื่นๆ" is in question5Value and question8Value
+            // if (in_array('อื่นๆ', $question5Value)) {
+            //     $question5Value[] = $question5Other;
+            //     $question5Value = array_diff($question5Value, ['อื่นๆ']);
+            // }
+
+            // if (in_array('อื่นๆ', $question8Value)) {
+            //     $question8Value[] = $question8Other;
+            //     $question8Value = array_diff($question8Value, ['อื่นๆ']);
+            // }
+
+            array_walk($question5Value, function (&$item) use ($question5Other) {
+                if ($item === 'อื่นๆ') {
+                    $item = $question5Other;
                 }
-            } else {
-                $question8Value = [];
-            }
+            });
+
+            array_walk($question8Value, function (&$item) use ($question8Other) {
+                if ($item === 'อื่นๆ') {
+                    $item = $question8Other;
+                }
+            });
+
+            // return [
+            //     'question5 : ', $question5Value,
+            //     'question8 : ', $question8Value
+            // ];
+
+
 
             // Check and update questions with "อื่นๆ" options
             if ($request->input('question6') === 'อื่นๆ') {

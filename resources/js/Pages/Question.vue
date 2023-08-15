@@ -4,7 +4,7 @@ import { Link, router } from "@inertiajs/vue3";
 import FormLayout from "@/Layouts/FormLayout.vue";
 
 const props = defineProps({
-    token: String
+    token: String,
 });
 const token = props.token;
 
@@ -234,12 +234,17 @@ const form = reactive({
     question3: "",
     question4: "",
     question5: [],
+    question5Other: "",
     question6: "",
+    question6Other: "",
     question7: "",
+    question7Other: "",
     question8: [],
+    question8Other: "",
     question9: "",
     question10: "",
     question11: "",
+    question11Other: "",
     question12: "",
     question13: "",
     question14: "",
@@ -263,6 +268,39 @@ const shouldCheckRequired = computed(() => {
     return true;
 });
 
+const clearData = (e) => {
+    //console.log(e.target);
+    // console.log(e.target.name);
+    // console.log(e.target.value);
+    //console.log(form.question5Other);
+
+    if (e.target.name === "question-5" && e.target.value === "อื่นๆ") {
+        form.question5Other = "";
+    }
+
+    if (e.target.name === "question-6" && e.target.value === "อื่นๆ") {
+        form.question6Other = "";
+    }
+
+    if (e.target.name === "question-7" && e.target.value === "อื่นๆ") {
+        form.question7Other = "";
+    }
+
+    if (e.target.name === "question-8" && e.target.value === "อื่นๆ") {
+        form.question8Other = "";
+    }
+
+    if (e.target.name === "question-11" && e.target.value === "อื่นๆ") {
+        form.question11Other = "";
+    }
+
+    if (e.target.name === "question-15" && e.target.value === "เคยประจำ") {
+        form.moreQuestion1 = "";
+        form.moreQuestion2 = "";
+        form.moreQuestion3 = "";
+    }
+};
+
 const Submit = () => {
     console.log(form);
 
@@ -283,7 +321,7 @@ const Submit = () => {
         <!-- Start Form -->
         <div class="py-2"></div>
         <form @submit.prevent="Submit">
-            <h1>{{ token }}</h1>
+            <!-- <h1>{{ token }}</h1> -->
             <!-- Questions -->
             <div
                 class="px-4 py-2"
@@ -328,6 +366,7 @@ const Submit = () => {
                                             :value="option.answer"
                                             class="text-orange-500 border-gray-300 focus:ring-orange-500"
                                             :required="shouldCheckRequired"
+                                            @change="clearData($event)"
                                         />
                                         <span class="pl-2"
                                             >{{ option.answer }}
@@ -341,9 +380,13 @@ const Submit = () => {
                                         question.questionsId == 5
                                     "
                                     type="text"
+                                    v-model="form.question5Other"
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
-                                    @input="question5Other"
+                                    :required="
+                                        form.question5.includes('อื่นๆ') &&
+                                        question.questionsId == 5
+                                    "
                                 />
 
                                 <!-- Check Question 6 -->
@@ -353,8 +396,13 @@ const Submit = () => {
                                         question.questionsId == 6
                                     "
                                     type="text"
+                                    v-model="form.question6Other"
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    :required="
+                                        form.question6 == 'อื่นๆ' &&
+                                        question.questionsId == 6
+                                    "
                                 />
 
                                 <!-- Check Question 7 -->
@@ -364,8 +412,13 @@ const Submit = () => {
                                         question.questionsId == 7
                                     "
                                     type="text"
+                                    v-model="form.question7Other"
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    :required="
+                                        form.question7 == 'อื่นๆ' &&
+                                        question.questionsId == 7
+                                    "
                                 />
 
                                 <!-- Check Question 8 -->
@@ -375,8 +428,13 @@ const Submit = () => {
                                         question.questionsId == 8
                                     "
                                     type="text"
+                                    v-model="form.question8Other"
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    :required="
+                                        form.question8.includes('อื่นๆ') &&
+                                        question.questionsId == 8
+                                    "
                                 />
                                 <!-- Check Question 9 -->
                                 <input
@@ -387,6 +445,7 @@ const Submit = () => {
                                     "
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    required
                                 />
                                 <!-- Check Question 14 -->
                                 <input
@@ -397,6 +456,7 @@ const Submit = () => {
                                     "
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    required
                                 />
                                 <!-- Check Question 11 -->
                                 <input
@@ -405,8 +465,13 @@ const Submit = () => {
                                         question.questionsId == 11
                                     "
                                     type="text"
+                                    v-model="form.question11Other"
                                     class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
+                                    :required="
+                                        form.question11 == 'อื่นๆ' &&
+                                        question.questionsId == 11
+                                    "
                                 />
                             </div>
                         </div>
@@ -416,45 +481,56 @@ const Submit = () => {
 
             <!-- ShowMoreQuestions -->
             <div v-if="form.question15 && form.question15 !== 'ไม่เคยใช้'">
+                <div class="px-4 py-2">
+                    <div
+                        class="relative flex w-full flex-col rounded-xl bg-lime-300/30 bg-clip-border text-gray-700 shadow-md"
+                    >
+                        <div class="p-4">
+                            <h2 class="font-semibold">
+                                คำถามเพิ่มเติมสำหรับผู้ใช้งานแอพพลิเคชันช่วยการออกกำลังกายในฟิตเนส
+                            </h2>
+                        </div>
+                    </div>
+                </div>
                 <div
                     class="px-4 py-2"
-                    v-for="(moreQuestions, index) in moreQuestions"
+                    v-for="(moreQ, index) in moreQuestions"
                     :key="index"
                 >
                     <div
-                        class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+                        class="relative flex w-full flex-col rounded-xl bg-lime-300/30 bg-clip-border text-gray-700 shadow-md"
                     >
                         <div class="p-4">
                             <div class="flex flex-col gap-4">
                                 <div class="">
                                     <h2 class="py-2 text-base font-semibold">
                                         {{ index + 1 }}
-                                        {{ moreQuestions.questionsName }}
+                                        {{ moreQ.questionsName }}
                                     </h2>
                                     <!-- Loop through options for each question -->
                                     <div
                                         class="py-2"
                                         v-for="(
                                             option, optionIndex
-                                        ) in moreQuestions.options"
+                                        ) in moreQ.options"
                                         :key="option.id"
                                     >
                                         <label
                                             class="text-sm"
                                             v-if="
-                                                moreQuestions.type == 'radio' ||
-                                                moreQuestions.type == 'checkbox'
+                                                moreQ.type == 'radio' ||
+                                                moreQ.type == 'checkbox'
                                             "
                                             ><input
                                                 v-model="
                                                     form[
-                                                        `moreQuestion${moreQuestions.questionsId}`
+                                                        `moreQuestion${moreQ.questionsId}`
                                                     ]
                                                 "
-                                                :type="moreQuestions.type"
+                                                :type="moreQ.type"
                                                 :name="
                                                     'moreQuestion-' +
-                                                    moreQuestions.questionsId
+                                                    moreQ.questionsId
                                                 "
                                                 :value="option.id"
                                                 class="text-orange-500 border-gray-300 focus:ring-orange-500"
@@ -467,11 +543,11 @@ const Submit = () => {
                                     </div>
                                     <!-- Check More Question 1 -->
                                     <input
-                                        v-if="moreQuestions.questionsId === 1"
-                                        :type="moreQuestions.type"
+                                        v-if="moreQ.questionsId === 1"
+                                        :type="moreQ.type"
                                         v-model="
                                             form[
-                                                `moreQuestions${moreQuestions.questionsId}`
+                                                `moreQuestion${moreQ.questionsId}`
                                             ]
                                         "
                                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
@@ -479,11 +555,11 @@ const Submit = () => {
                                     />
                                     <!-- Check More Question 3 -->
                                     <input
-                                        v-if="moreQuestions.questionsId === 3"
-                                        :type="moreQuestions.type"
+                                        v-if="moreQ.questionsId === 3"
+                                        :type="moreQ.type"
                                         v-model="
                                             form[
-                                                `moreQuestions${moreQuestions.questionsId}`
+                                                `moreQuestion${moreQ.questionsId}`
                                             ]
                                         "
                                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"

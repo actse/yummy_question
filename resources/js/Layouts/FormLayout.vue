@@ -30,7 +30,7 @@ import Footer from "@/Layouts/Footer.vue";
                         แบบสำรวจผู้ใช้บริการ Gym หรือ Fitness
                     </h1>
                     <p
-                        class="p-2 block font-k2d text-sm font-light leading-relaxed text-inherit antialiased"
+                        class="p-2 block font-k2d text-sm font-light leading-relaxed text-inherit antialiased hidden"
                     >
                         คำอธิบายแบบฟอร์ม
                     </p>

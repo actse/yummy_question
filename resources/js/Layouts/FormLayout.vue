@@ -2,23 +2,16 @@
 import { Link } from "@inertiajs/vue3";
 import LogoFITPUNG from "@/Components/LogoFITPUNG.vue";
 import Footer from "@/Layouts/Footer.vue";
-
-const props = defineProps({
-    name: String,
-    phone: String,
-});
-const name = props.name;
-console.log(name);
-const phone = props.phone;
-console.log(phone);
 </script>
 <template>
     <div class="w-full min-h-screen relative font-k2d">
         <div
             class="flex flex-row lg:h-28 md:h-16 bg-stone-700 shadow-md shadow-orange-200"
         >
-            <div class="lg:pl-6 pl-4">
-                <LogoFITPUNG></LogoFITPUNG>
+            <div class="lg:pl-6 pl-4 ">
+                <div class="lg:w-28 lg:h-28 w-16 h-16">
+                    <LogoFITPUNG></LogoFITPUNG>
+                </div>
             </div>
 
             <h2 class="lg:py-10 lg:pl-4 lg:text-lg  py-6 pl-2 text-xs text-orange-500 shadow-md">

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('fitness');
             $table->string('name');
-            $table->integer('phone');
+            $table->string('phone');
             $table->text('ref_code');
             $table->text('question1');
             $table->text('question2');

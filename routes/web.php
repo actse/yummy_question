@@ -38,7 +38,7 @@ Route::post('/saveQuestion', [UserDataController::class, 'saveQuestion']);
 
 Route::get('/success', function (Request $request) {
 
-    return Inertia::render('Question', [
+    return Inertia::render('Success', [
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
         'token' => $request->token,

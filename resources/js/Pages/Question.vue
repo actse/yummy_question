@@ -303,33 +303,7 @@ const clearData = (e) => {
 };
 
 const Submit = () => {
-    Swal.fire({
-        title: "ยืนยันการส่งแบบฟอร์มหรือไม่",
-        showCancelButton: true,
-        confirmButtonText: "ยืนยัน",
-        cancelButtonText: "บยกเลิก",
-    }).then((result) => {
-        console.log(result);
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            router
-                .post("/saveQuestion", form)
-                .then((response) => {
-                    console.log(response.data);
-                    Swal.fire({
-                        icon: "success",
-                        title: "ส่งแบบฟอร์มสำเร็จแล้ว",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        } else if (result.isDenied) {
-            Swal.fire("การยืนยันถูกยกเลิก", "", "info");
-        }
-    });
+    router.post("/saveQuestion", form);
 };
 </script>
 <template>
@@ -567,6 +541,7 @@ const Submit = () => {
                                         "
                                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                         placeholder="โปรดระบุ"
+                                        required
                                     />
                                     <!-- Check More Question 3 -->
                                     <input
@@ -579,6 +554,7 @@ const Submit = () => {
                                         "
                                         class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
                                         placeholder="โปรดระบุ"
+                                        required
                                     />
                                 </div>
                             </div>

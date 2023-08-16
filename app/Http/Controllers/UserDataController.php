@@ -11,7 +11,6 @@ class UserDataController extends Controller
 {
     public function saveUserData(Request $request)
     {
-
         $fitness = 'fitness_1';
         $token = Str::random(4);
 
@@ -47,7 +46,7 @@ class UserDataController extends Controller
 
     public function saveQuestion(Request $request)
     {
-        //return $request;
+
         $token = $request->token;
         $data = UserData::where('ref_code', $token)->first();
 
@@ -57,33 +56,6 @@ class UserDataController extends Controller
             $question8Value = $request->input('question8');
             $question5Other = $request->input('question5Other');
             $question8Other = $request->input('question8Other');
-
-            // if ($question5Value !== null) {
-            //     if (in_array('อื่นๆ', $question5Value)) {
-            //         $question5Value = [$question5Other];
-            //     }
-            // } else {
-            //     $question5Value = [];
-            // }
-
-            // if ($question8Value !== null) {
-            //     if (in_array('อื่นๆ', $question8Value)) {
-            //         $question8Value = [$question8Other];
-            //     }
-            // } else {
-            //     $question8Value = [];
-            // }
-
-            // Check if "อื่นๆ" is in question5Value and question8Value
-            // if (in_array('อื่นๆ', $question5Value)) {
-            //     $question5Value[] = $question5Other;
-            //     $question5Value = array_diff($question5Value, ['อื่นๆ']);
-            // }
-
-            // if (in_array('อื่นๆ', $question8Value)) {
-            //     $question8Value[] = $question8Other;
-            //     $question8Value = array_diff($question8Value, ['อื่นๆ']);
-            // }
 
             array_walk($question5Value, function (&$item) use ($question5Other) {
                 if ($item === 'อื่นๆ') {
@@ -96,13 +68,6 @@ class UserDataController extends Controller
                     $item = $question8Other;
                 }
             });
-
-            // return [
-            //     'question5 : ', $question5Value,
-            //     'question8 : ', $question8Value
-            // ];
-
-
 
             // Check and update questions with "อื่นๆ" options
             if ($request->input('question6') === 'อื่นๆ') {
@@ -128,10 +93,10 @@ class UserDataController extends Controller
                 'question2' => $request->input('question2'),
                 'question3' => $request->input('question3'),
                 'question4' => $request->input('question4'),
-                'question5' => $question5Value,
+                'question5' => json_encode($question5Value, JSON_UNESCAPED_UNICODE),
                 'question6' => $question6Value,
                 'question7' => $question7Value,
-                'question8' => $question8Value,
+                'question8' => json_encode($question8Value, JSON_UNESCAPED_UNICODE),
                 'question9' => $request->input('question9'),
                 'question10' => $request->input('question10'),
                 'question11' => $question11Value,
@@ -145,8 +110,7 @@ class UserDataController extends Controller
             ];
 
             $data->update($updatedData);
-
-            return response()->json(['message' => 'Data updated successfully']);
+            return redirect()->route('success', ['token' => $token]);
         } else {
             return response()->json(['message' => 'User data not found'], 404);
         }

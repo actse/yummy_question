@@ -317,13 +317,13 @@ const Submit = () => {
                 :key="index"
             >
                 <div
-                    class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+                    class="relative flex flex-col w-full max-w-screen-md mx-auto text-gray-700 shadow-md rounded-xl bg-orange-200/30 bg-clip-border"
                 >
                     <div class="p-4">
                         <div class="flex flex-col gap-4">
                             <div class="">
                                 <h2
-                                    class="py-2 lg:text-xl md:text-base font-semibold"
+                                    class="py-2 font-semibold lg:text-xl md:text-base"
                                 >
                                     {{ index + 1 }} {{ question.questionsName }}
                                 </h2>
@@ -371,7 +371,7 @@ const Submit = () => {
                                     "
                                     type="text"
                                     v-model="form.question5Other"
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     :required="
                                         form.question5.includes('อื่นๆ') &&
@@ -387,7 +387,7 @@ const Submit = () => {
                                     "
                                     type="text"
                                     v-model="form.question6Other"
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     :required="
                                         form.question6 == 'อื่นๆ' &&
@@ -403,7 +403,7 @@ const Submit = () => {
                                     "
                                     type="text"
                                     v-model="form.question7Other"
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     :required="
                                         form.question7 == 'อื่นๆ' &&
@@ -419,7 +419,7 @@ const Submit = () => {
                                     "
                                     type="text"
                                     v-model="form.question8Other"
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     :required="
                                         form.question8.includes('อื่นๆ') &&
@@ -433,7 +433,7 @@ const Submit = () => {
                                     v-model="
                                         form[`question${question.questionsId}`]
                                     "
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     required
                                 />
@@ -444,7 +444,7 @@ const Submit = () => {
                                     v-model="
                                         form[`question${question.questionsId}`]
                                     "
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     required
                                 />
@@ -456,7 +456,7 @@ const Submit = () => {
                                     "
                                     type="text"
                                     v-model="form.question11Other"
-                                    class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                     placeholder="โปรดระบุ"
                                     :required="
                                         form.question11 == 'อื่นๆ' &&
@@ -472,7 +472,7 @@ const Submit = () => {
             <div v-if="form.question15 && form.question15 !== 'ไม่เคยใช้'">
                 <div class="px-4 py-2">
                     <div
-                        class="relative flex w-full flex-col rounded-xl bg-lime-300/30 bg-clip-border text-gray-700 shadow-md"
+                        class="relative flex flex-col w-full text-gray-700 shadow-md rounded-xl bg-lime-300/30 bg-clip-border"
                     >
                         <div class="p-4">
                             <h2 class="font-semibold">
@@ -487,7 +487,7 @@ const Submit = () => {
                     :key="index"
                 >
                     <div
-                        class="relative flex w-full flex-col rounded-xl bg-lime-300/30 bg-clip-border text-gray-700 shadow-md"
+                        class="relative flex flex-col w-full text-gray-700 shadow-md rounded-xl bg-lime-300/30 bg-clip-border"
                     >
                         <div class="p-4">
                             <div class="flex flex-col gap-4">
@@ -539,7 +539,7 @@ const Submit = () => {
                                                 `moreQuestion${moreQ.questionsId}`
                                             ]
                                         "
-                                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                         placeholder="โปรดระบุ"
                                         required
                                     />
@@ -552,7 +552,7 @@ const Submit = () => {
                                                 `moreQuestion${moreQ.questionsId}`
                                             ]
                                         "
-                                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-orange-600 focus:ring-orange-500 sm:text-sm focus:ring-1"
                                         placeholder="โปรดระบุ"
                                         required
                                     />

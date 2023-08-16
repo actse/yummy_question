@@ -24,9 +24,9 @@ const Submit = () => {
 <template>
     <FormLayout>
         <!-- Start Form -->
-        <div class="px-4 py-2">
+        <div class="max-w-screen-md px-4 py-2 mx-auto">
             <div
-                class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+                class="relative flex flex-col w-full text-gray-700 shadow-md rounded-xl bg-orange-200/30 bg-clip-border"
             >
                 <form @submit.prevent="Submit" action="">
                     <div class="p-4">
@@ -42,7 +42,7 @@ const Submit = () => {
                                         type="text"
                                         name="userName"
                                         v-model="form.userName"
-                                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 sm:text-sm focus:ring-1"
                                         required
                                     />
                                 </label>
@@ -61,7 +61,7 @@ const Submit = () => {
                                         minlength="10"
                                         maxlength="10"
                                         v-model="form.phone"
-                                        class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border rounded-md shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 sm:text-sm focus:ring-1"
                                         required
                                     />
                                 </label>

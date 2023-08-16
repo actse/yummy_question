@@ -21,7 +21,11 @@ export default {
                 kanit: ['Kanit', 'sans-serif'],
                 varela: ['Varela Round', 'sans-serif']
             },
-
+            colors: {
+                orange: {
+                    '50': '#ea4a18'
+                },
+            }
         },
     },
 

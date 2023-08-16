@@ -19,7 +19,7 @@ const token = props.token;
                     class="bg-orange-300 rounded-lg p-6 shadow-lg shadow-orange-600"
                 >
                     <div class="pb-6">
-                        <span class="font-prompt  text-lg text-stone-800">
+                        <span class="font-kanit  text-lg text-stone-800">
                             โปรดแจ้งรหัสให้เจ้าหน้าที่ เพื่อแลกส่วนลด
                         </span>
                     </div>

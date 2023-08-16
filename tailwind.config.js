@@ -19,6 +19,7 @@ export default {
                 // kanit: ['Kanit', ...defaultTheme.fontFamily.serif],
                 prompt: ['Prompt', 'sans-serif'],
                 kanit: ['Kanit', 'sans-serif'],
+                varela: ['Varela Round', 'sans-serif']
             },
 
         },

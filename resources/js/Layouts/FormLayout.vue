@@ -15,13 +15,13 @@ import Footer from "@/Layouts/Footer.vue";
             </div>
 
             <h2 class="lg:py-10 lg:pl-4 lg:text-lg  py-6 pl-2 text-xs text-orange-500 shadow-md">
-                FIT PUNG: FIT for Life, PUNG for Results!
+                FIT for Success, PUNG for Progress!
             </h2>
         </div>
         <!-- Title -->
         <div class="lg:pt-6 lg:py-4 pt-6 px-4 py-2">
             <div
-                class="relative flex w-full flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
+                class="relative flex w-full h-24  flex-col rounded-xl bg-orange-200/30 bg-clip-border text-gray-700 shadow-md"
             >
                 <div class="lg:p-6 p-4">
                     <h1

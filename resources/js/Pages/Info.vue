@@ -70,7 +70,7 @@ const Submit = () => {
                     </div>
                     <div class="p-4 pt-0">
                         <button
-                            class="select-none rounded-lg bg-[#f49f0a] py-3 px-6 text-center align-middle font-sans text-sm  font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            class="select-none rounded-lg border-2 border-orange-50 text-orange-50/90 py-3 px-6 text-center align-middle text-sm  font-bold uppercase bg-white  shadow-md  shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="submit"
                             data-ripple-light="true"
                         >

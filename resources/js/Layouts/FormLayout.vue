@@ -38,7 +38,7 @@ import Footer from "@/Layouts/Footer.vue";
             </div>
         </div>
         <!-- End Title -->
-        <div class="relative max-w-screen-xl mx-auto h-max">
+        <div class="relative max-w-screen-md mx-auto h-max">
             <slot />
         </div>
         <div class="p-8">

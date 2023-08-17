@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\UserData;
 use Inertia\Inertia;
+use Carbon\Carbon;
+use App\Models\ConfigSystem;
+
 
 class UserDataController extends Controller
 {
@@ -110,6 +113,44 @@ class UserDataController extends Controller
             ];
 
             $data->update($updatedData);
+
+            $userData = UserData::where('ref_code', $token)->first();
+
+            $configSystems = ConfigSystem::all();
+            foreach ($configSystems as $configSystem) {
+                $line_token = $configSystem->line_token;
+                //return $line_token;
+            }
+
+            $updated_at = $userData->updated_at;
+            $carbonDate = Carbon::parse($updated_at);
+
+            $reference = $userData->ref_code;
+            $name = $userData->name;
+            $phone = $userData->phone;
+            $date = $carbonDate->format('Y-m-d');
+            $time = $carbonDate->format('H:i');
+
+            $sMessage = "แจ้งเตือนการทำแบบสำรวจ";
+            $sMessage .= "
+รหัสการจอง: $reference
+ชื่อ: $name
+เบอร์โทร: $phone
+วันที่: $date
+เวลา: $time";
+            $sToken = $line_token;
+            $chOne = curl_init();
+            curl_setopt($chOne, CURLOPT_URL, 'https://notify-api.line.me/api/notify');
+            curl_setopt($chOne, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($chOne, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($chOne, CURLOPT_POST, 1);
+            curl_setopt($chOne, CURLOPT_POSTFIELDS, 'message=' . $sMessage);
+            $headers = ['Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $sToken . ''];
+            curl_setopt($chOne, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($chOne, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($chOne);
+
+            //return $result;
             return redirect()->route('success', ['token' => $token]);
         } else {
             return response()->json(['message' => 'User data not found'], 404);

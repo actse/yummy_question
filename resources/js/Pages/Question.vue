@@ -320,13 +320,16 @@ const Submit = () => {
                     class="relative flex flex-col w-full max-w-screen-md mx-auto text-gray-700 shadow-md rounded-xl bg-orange-200/30 bg-clip-border"
                 >
                     <div class="p-4">
-                        <div class="flex flex-col gap-4">
+                        <div class="flex flex-col">
                             <div class="">
-                                <h2
-                                    class="py-2 font-semibold lg:text-xl md:text-base"
+                                <div
+                                    class="flex flex-row pb-4 font-semibold lg:text-base md:text-base"
                                 >
-                                    {{ index + 1 }} {{ question.questionsName }}
-                                </h2>
+                                    <div class="">{{ index + 1 }}.</div>
+                                    <div class="pl-4">
+                                        {{ question.questionsName }}
+                                    </div>
+                                </div>
                                 <!-- Loop through options for each question -->
                                 <div
                                     class="py-2"
@@ -335,33 +338,35 @@ const Submit = () => {
                                     ) in question.options"
                                     :key="option.id"
                                 >
-                                    <label
-                                        class="text-sm"
+                                    <div
+                                        class="flex flex-row lg:text-base text-sm"
                                         v-if="
                                             question.type == 'radio' ||
                                             question.type == 'checkbox'
                                         "
                                     >
-                                        <input
-                                            v-model="
-                                                form[
-                                                    `question${question.questionsId}`
-                                                ]
-                                            "
-                                            :type="question.type"
-                                            :name="
-                                                'question-' +
-                                                question.questionsId
-                                            "
-                                            :value="option.answer"
-                                            class="text-orange-500 border-gray-300 focus:ring-orange-500"
-                                            :required="shouldCheckRequired"
-                                            @change="clearData($event)"
-                                        />
-                                        <span class="pl-2"
-                                            >{{ option.answer }}
-                                        </span>
-                                    </label>
+                                        <div class="pl-2">
+                                            <input
+                                                v-model="
+                                                    form[
+                                                        `question${question.questionsId}`
+                                                    ]
+                                                "
+                                                :type="question.type"
+                                                :name="
+                                                    'question-' +
+                                                    question.questionsId
+                                                "
+                                                :value="option.answer"
+                                                class="text-orange-500 border-gray-300 focus:ring-orange-500"
+                                                :required="shouldCheckRequired"
+                                                @change="clearData($event)"
+                                            />
+                                        </div>
+                                        <div class="pl-4">
+                                            {{ option.answer }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Check Question 5 -->
                                 <input
@@ -565,7 +570,7 @@ const Submit = () => {
             <!-- Summit -->
             <div class="p-4 pt-2">
                 <button
-                    class="select-none rounded-lg bg-[#f49f0a] py-3 px-6 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    class="select-none rounded-lg border-2 border-orange-50 text-orange-50/90 py-3 px-6 text-center align-middle text-sm font-bold uppercase shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="submit"
                     data-ripple-light="true"
                 >
